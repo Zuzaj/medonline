@@ -1,0 +1,32 @@
+{
+  "2025-01-09": [
+    {
+      "time": "09:00",
+      "reserved": true,
+      "type": "Consultation",
+      "details": "Consultation with Kowalski"
+    },
+    {
+      "time": "10:30",
+      "reserved": true,
+      "type": "Follow-up",
+      "details": "Follow-up for lab results"
+    },
+    {
+      "time": "11:00",
+      "reserved": false
+    }
+  ],
+  "2025-01-10": [
+    {
+      "time": "11:00",
+      "reserved": true,
+      "type": "Emergency",
+      "details": "Emergency appointment with current-user"
+    },
+    {
+      "time": "12:30",
+      "reserved": false
+    }
+  ]
+}

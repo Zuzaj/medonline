@@ -1,0 +1,23 @@
+<div class="absence-form">
+  <h2>Dodaj nieobecność</h2>
+
+  <!-- Data i powód nieobecności -->
+  <label>Data nieobecności:</label>
+  <input type="date" [(ngModel)]="newAbsence.date" />
+
+  <label>Powód:</label>
+  <input type="text" [(ngModel)]="newAbsence.reason" placeholder="Wpisz powód" />
+
+  <!-- Dodaj przycisk do zapisania nieobecności -->
+  <button (click)="addAbsence()">Dodaj nieobecność</button>
+</div>
+
+<div class="absence-list">
+  <h3>Twoje planowane nieobecności</h3>
+  <ul>
+    <li *ngFor="let absence of absences">
+      <span class="absence-date">{{ absence.date }}</span>: {{ absence.reason }}
+      <button *ngIf="absence.key" (click)="deleteAbsence(absence.key)">Usuń</button>
+    </li>
+  </ul>
+</div>

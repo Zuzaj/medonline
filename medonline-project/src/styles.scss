@@ -1,0 +1,36 @@
+/* You can add global styles to this file, and also import other style files */
+body 
+{
+    background: url('./assets/background.jpg');
+    background-position: center;
+    background-size: cover;
+    background-repeat: no-repeat;
+    min-height: 100vh;
+    max-width: 100vw;
+}
+
+.medonline_button 
+{
+    background-color: #b59668;
+    color: white;
+    border: 1px solid black;
+    margin: 1rem;
+    transition: all 0.3s ease-in-out;
+
+    & img 
+    {
+        transition: all 0.3s ease-in-out;
+    }
+
+    &:hover 
+    {
+        color: #b59668;
+        background-color: white;
+
+        & img 
+        {
+            filter: invert(0%);
+        }
+    }
+    
+}

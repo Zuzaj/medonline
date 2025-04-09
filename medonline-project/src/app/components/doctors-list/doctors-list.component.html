@@ -1,0 +1,29 @@
+<div class="doctors-list-container">
+    <h2>Dostępni lekarze</h2>
+  
+    <div *ngIf="doctors$ | async as doctors; else loading">
+      <ul *ngIf="doctors.length > 0; else noDoctors" class="doctor-list">
+        <li *ngFor="let doctor of doctors" class="doctor-card">
+          <div>
+            <strong>{{ doctor.name }}</strong> - {{ doctor.specialization }}
+          </div>
+          <ng-container *ngIf="isAdmin$ | async">
+            <button 
+              class="delete-button" 
+              (click)="deleteDoctor(doctor.user_id)">
+              Delete
+            </button>
+          </ng-container>
+        </li>
+      </ul>
+    </div>
+  
+    <ng-template #loading>
+      <p>Loading doctors...</p>
+    </ng-template>
+  
+    <ng-template #noDoctors>
+      <p>No doctors available.</p>
+    </ng-template>
+  </div>
+  

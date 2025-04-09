@@ -1,0 +1,49 @@
+<div class="calendar-container">
+  <div class="calendar-header">
+    <button (click)="showPreviousWeek()">Poprzedni tydzień</button>
+    <h2>Kalendarz ({{ currentWeek[0] | date: 'dd.MM' }} - {{ currentWeek[6] | date: 'dd.MM' }})</h2>
+    <button (click)="showNextWeek()">Następny tydzień</button>
+  </div>
+
+  <div class="calendar-time-navigation">
+    <button (click)="showPreviousHours()">Przewiń godziny wstecz</button>
+    <button (click)="showNextHours()">Przewiń godziny do przodu</button>
+  </div>
+
+  <div class="calendar-grid">
+    <div class="calendar-column" *ngFor="let day of currentWeek; let i = index">
+      <div class="calendar-header-day" [class.today]="isToday(day)">
+        <strong>{{ day | date: 'EEEE' }}</strong>
+        <span>{{ day | date: 'dd.MM' }}</span>
+        <span class="appointments-count">Liczba konsultacji: {{ getAppointmentsCount(day) }}</span>
+      </div>
+
+      <div class="calendar-time-slots">
+        <div *ngFor="let hour of displayedTimeSlots" class="time-slot"
+        [id]="'hour-' + hour"
+          [ngClass]="{
+            'appointment-block': isAppointmentSlot(day, hour),
+            'regular': isRegularConsultation(day,hour),
+            'emergency':isEmergencyConsultation(day,hour),
+            'consultation':isConsultation(day,hour),
+            'past': isPastAppointment(day, hour),
+            'current': isCurrentTimeSlot(day, hour),
+            'empty-slot': isAvailableSlot(day, hour) && !isAppointmentSlot(day, hour),
+            'absent-day': isAbsent(day),
+            'unavailable-slot': isUnavailableSlot(day, hour)
+          }"
+          (mouseenter)="showDetails(day, hour)"
+          (mouseleave)="hideDetails()">
+          
+          <div *ngIf="isAppointmentSlot(day, hour)" class="appointment-block">
+            <span>{{ getAppointmentType(day, hour) }}</span>
+            <div *ngIf="hoveredAppointment" class="appointment-description">
+              {{ hoveredAppointment.description}}</div>
+          </div>
+          <div *ngIf="isCurrentTimeSlot(day, hour)" class="current-time-marker"></div>
+          <div class="calendar-hour">{{ hour }}</div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

@@ -1,0 +1,56 @@
+ {
+  "rules": {
+    ".read": "auth != null ",
+        ".write": "auth == null ",
+    "users": {
+      ".read": "auth == null ",
+        ".write": "auth == null ",
+      "$userId": {
+        ".read": "auth != null ",
+        ".write": "auth != null", 
+        // && auth.uid === $userId", // Allow a logged-in user to write their own data
+        "appointments": {
+          ".read": "auth != null", // All authenticated users can read appointments
+          ".write": "auth != null",
+        },
+        "availability": {
+          ".read": "auth != null", // All authenticated users can read availability
+          ".write": "auth != null", //&& root.child('users/' + auth.uid + '/type').val() === 'doctor'" // Only doctors can edit availability
+        },
+        "absences": {
+          ".read": "auth != null", // All authenticated users can read availability
+          ".write": "auth != null",// && root.child('users/' + auth.uid + '/type').val() === 'doctor'" // Only doctors can edit availability
+        }
+      }
+    }
+  }
+}
+
+    Ogólne zasady:
+        .read: "auth != null" – Odczyt danych jest dozwolony tylko dla użytkowników, którzy są zalogowani (auth != null oznacza, że użytkownik jest uwierzytelniony).
+        .write: "auth == null" – Zapis danych jest dozwolony tylko dla użytkowników, którzy nie są zalogowani (auth == null oznacza, że użytkownik nie jest uwierzytelniony).
+
+    Zasady dotyczące kolekcji "users":
+        .read: "auth == null" – Odczyt danych w kolekcji użytkowników jest dozwolony tylko dla użytkowników niezalogowanych.
+        .write: "auth == null" – Zapis danych w kolekcji użytkowników jest dozwolony tylko dla użytkowników niezalogowanych.
+
+    Zasady dotyczące poszczególnych użytkowników (w odniesieniu do $userId):
+        .read: "auth != null" – Odczyt danych użytkownika (np. $userId) jest dozwolony tylko dla użytkowników zalogowanych.
+        .write: "auth != null" – Zapis danych użytkownika jest dozwolony tylko dla użytkowników zalogowanych.
+
+    Zasady dotyczące "appointments" (wizyt):
+        .read: "auth != null" – Odczyt danych wizyt jest dozwolony dla wszystkich użytkowników zalogowanych.
+        .write: "auth != null" – Zapis danych wizyt jest dozwolony dla wszystkich użytkowników zalogowanych.
+
+    Zasady dotyczące "availability" (dostępności):
+        .read: "auth != null" – Odczyt danych dostępności jest dozwolony dla wszystkich użytkowników zalogowanych.
+        .write: "auth != null" – Zapis danych dostępności jest dozwolony dla wszystkich użytkowników zalogowanych. 
+
+    Zasady dotyczące "absences" (nieobecności):
+        .read: "auth != null" – Odczyt danych dotyczących nieobecności jest dozwolony dla wszystkich użytkowników zalogowanych.
+        .write: "auth != null" – Zapis danych dotyczących nieobecności jest dozwolony dla wszystkich użytkowników zalogowanych. (Podobnie jak w przypadku dostępności, w komentarzu jest wskazówka, że tylko lekarze powinni mieć możliwość edytowania nieobecności, ale ten warunek jest również zakomentowany).
+
+Podsumowanie:
+
+Zasady te umożliwiają dostęp do danych użytkowników i ich zasobów (w tym wizyt, dostępności i nieobecności) tylko zalogowanym użytkownikom, 
+z wyjątkiem głównej kolekcji "users", która jest dostępna tylko dla użytkowników niezalogowanych. 

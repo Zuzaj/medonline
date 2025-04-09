@@ -1,0 +1,49 @@
+<nav class="navbar navbar-expand-lg navbar-light bg-light" style="background-color: transparent;">
+  <div class="container-fluid">
+    <a class="navbar-brand" routerLink="/home">
+      <div class="d-flex">
+        <img class="me-1" src="../../../assets/Ionic-Ionicons-Medical-sharp.svg" alt="logo" />
+        MedOnline
+      </div>
+    </a>
+    <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNavAltMarkup" aria-controls="navbarNavAltMarkup" aria-expanded="false" aria-label="Toggle navigation">
+      <span class="navbar-toggler-icon"></span>
+    </button>
+    <div class="collapse navbar-collapse ms-4" id="navbarNavAltMarkup">
+      <div class="navbar-nav">
+        <!-- Links visible to unauthenticated users -->
+        <div *ngIf="isLoggedIn" class="ms-auto d-flex align-items-center">
+          Witaj {{ userName }}!
+        </div>
+        <a *ngIf="!isLoggedIn" class="nav-link" routerLink="/home">Strona główna</a>
+        <a *ngIf="!isLoggedIn"class="nav-link" routerLink="/doctors-list">Lekarze</a>
+        <a *ngIf="!isLoggedIn" class="nav-link" routerLink="/login">Logowanie</a>
+        <a *ngIf="!isLoggedIn" class="nav-link" routerLink="/register">Rejestracja</a>
+        <!-- <a *ngIf="isLoggedIn" class="nav-link" (click)="logout()">Wyloguj</a> -->
+
+                <!-- Links visible to logged-in doctors -->
+
+        <a *ngIf="isDoctor" class="nav-link" routerLink="/home">Strona główna</a>
+        <a *ngIf="isDoctor"class="nav-link" routerLink="/doctors-list">Lekarze</a>
+        <a *ngIf="isDoctor" class="nav-link" routerLink="/doctor-calendar">Kalendarz</a>
+        <a *ngIf="isDoctor" class="nav-link" routerLink="/availability">Dodaj dostępność</a>
+        <a *ngIf="isDoctor" class="nav-link" routerLink="/absence">Dodaj nieobecność</a>
+        <a *ngIf="isDoctor" class="nav-link" (click)="logout()">Wyloguj</a>
+
+        <!-- Links visible to logged-in patients -->
+        <a *ngIf="isPatient" class="nav-link" routerLink="/home">Strona główna</a>
+        <a *ngIf="isPatient"class="nav-link" routerLink="/doctors-list">Lekarze</a>
+        <a *ngIf="isPatient" class="nav-link" routerLink="/harmonogram">Harmonogram</a>
+        <a *ngIf="isPatient" class="nav-link" routerLink="/koszyk-zakupowy">Koszyk</a>
+        <a *ngIf="isPatient" class="nav-link" routerLink="/historia">Historia</a>
+        <a *ngIf="isPatient" class="nav-link" (click)="logout()">Wyloguj</a>
+
+        <a *ngIf="isAdmin"class="nav-link" routerLink="/admin-settings">AdminConsole</a>
+        <a *ngIf="isAdmin"class="nav-link" routerLink="/doctors-list">Lekarze</a>
+        <a *ngIf="isAdmin"class="nav-link" routerLink="/register">Zarejestruj lekarza</a>
+        <a *ngIf="isAdmin" class="nav-link" (click)="logout()">Wyloguj</a>
+
+      </div>
+    </div>
+  </div>
+</nav>

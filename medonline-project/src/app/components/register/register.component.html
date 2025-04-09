@@ -1,0 +1,46 @@
+<div class="container">
+    <div class="buttons">
+        <div class="field">
+            <label for="name">Title</label>
+            <input [(ngModel)]="name" type="text" id="name">
+
+        </div>
+        <p *ngIf="nameError!==''" class="error">{{nameError}}</p>
+
+        <div class="field">
+            <label for="surname">Surname</label>
+            <input  [(ngModel)]="surname" type="text" id="surname">
+        </div>
+        <p *ngIf="surnameError!==''" class="error">{{surnameError}}</p>
+
+        <div class="field">
+            <label for="email">Email</label>
+            <input [(ngModel)]="email" type="text" id="email">
+        </div>
+        <p *ngIf="emailError!==''" class="error">{{emailError}}</p>
+
+        <div class="field">
+            <label for="password">Password</label>
+            <input [(ngModel)]="password" type="password" id="password">
+        </div>
+        <p *ngIf="passwordError!==''" class="error">{{passwordError}}</p>
+
+        <div class="field">
+            <label for="patientType">Type</label>
+            <input id="patientType" type="text" [value]="type" readonly />
+        </div>        
+        
+        <p *ngIf="patientTypeError !== ''" class="error">{{ patientTypeError }}</p>
+
+        <div *ngIf="isAdmin$ | async" class="field">
+            <label for="specialization">Specialization</label>
+            <input [(ngModel)]="specialization" type="text" id="specialization">
+        </div>
+        <p *ngIf="specialization!==''" class="error">{{specializationError}}</p>
+
+        <div class="field">
+            <button (click)="cancel()">Cancel</button>
+            <button (click)="submit()">Register</button>
+        </div>
+    </div>
+</div>

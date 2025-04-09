@@ -1,0 +1,11 @@
+<div class="admin-settings">
+    <h2>Admin Settings</h2>
+    <label for="persistenceMode">Select Persistence Mode:</label>
+    <select [(ngModel)]="selectedMode">
+      <option value="local">Local (Persistent session across browser restarts)</option>
+      <option value="session">Session (Only lasts during the session)</option>
+      <option value="none">None (No session persistence)</option>
+    </select>
+    <button (click)="changePersistenceMode()">Save Changes</button>
+  </div>
+  

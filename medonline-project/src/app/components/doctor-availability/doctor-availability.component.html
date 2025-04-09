@@ -1,0 +1,99 @@
+<div class="availability-form">
+    <h2>Zdefiniuj dostępność</h2>
+  
+    <!-- Wybór rodzaju dostępności -->
+    <label>
+      <input
+        type="radio"
+        name="availabilityType"
+        value="cyclic"
+        [(ngModel)]="newAvailability.type"
+      />
+      Dostępność cykliczna
+    </label>
+    <label>
+      <input
+        type="radio"
+        name="availabilityType"
+        value="one-time"
+        [(ngModel)]="newAvailability.type"
+      />
+      Dostępność jednorazowa
+    </label>
+  
+    <!-- Dostępność cykliczna -->
+    <div *ngIf="newAvailability.type === 'cyclic'">
+      <label>Okres: od</label>
+      <input type="date" [(ngModel)]="newAvailability.startDate" />
+  
+      <label>do:</label>
+      <input type="date" [(ngModel)]="newAvailability.endDate" />
+  
+      <label>Dni tygodnia:</label>
+      <div>
+        <label *ngFor="let day of daysOfWeekOptions">
+            <input
+              type="checkbox"
+              [value]="day.value"
+              [checked]="newAvailability.daysOfWeek && newAvailability.daysOfWeek.includes(day.value)"
+              (change)="toggleDaySelection(day.value)"
+            />
+            {{ day.label }}
+          </label>
+          
+      </div>
+    </div>
+  
+    <!-- Dostępność jednorazowa -->
+    <div *ngIf="newAvailability.type === 'one-time'">
+      <label>Data:</label>
+      <input type="date" [(ngModel)]="newAvailability.specificDate" />
+    </div>
+  
+    <!-- Godziny konsultacji -->
+    <label>Godziny konsultacji:</label>
+    <div *ngFor="let slot of newAvailability.timeSlots; let i = index">
+      <input
+        type="time"
+        [(ngModel)]="slot.startTime"
+        placeholder="Godzina rozpoczęcia"
+      />
+      -
+      <input
+        type="time"
+        [(ngModel)]="slot.endTime"
+        placeholder="Godzina zakończenia"
+      />
+      <button (click)="removeTimeSlot(i)">Usuń</button>
+    </div>
+    <button (click)="addTimeSlot()">Dodaj dostępność</button>
+  
+    <!-- Zapis dostępności -->
+    <button (click)="saveAvailability()">Zapisz</button>
+  </div>
+  
+  <!-- Lista dostępności -->
+  <div class="availability-list">
+    <h3>Twoje dostępności</h3>
+    <ul>
+      <li *ngFor="let item of (availability$ | async)">
+        <strong>{{ item.type === 'cyclic' ? 'Cykliczna' : 'Jednorazowa' }}</strong>:
+        <span *ngIf="item.type === 'cyclic'">
+          <button *ngIf="item.key" (click)="deleteAvailability(item.key)">Usuń</button>
+          Od {{ item.startDate }} do {{ item.endDate }},
+          w dniach {{ item.daysOfWeek?.join(', ') }}:
+        </span>
+        <span *ngIf="item.type === 'one-time'">
+          <button *ngIf="item.key" (click)="deleteAvailability(item.key)">Usuń</button>
+          W dniu {{ item.specificDate }}:
+        </span>
+        <ul>
+          <li *ngFor="let slot of item.timeSlots">
+            {{ slot.startTime }} - {{ slot.endTime }}
+          </li>
+        </ul>
+      </li>
+    </ul>
+  </div>
+  
+  

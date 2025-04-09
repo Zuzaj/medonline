@@ -1,0 +1,43 @@
+.home_page_info
+{
+    width: 100vw;
+    height: 90vh;
+    display: flex;
+    justify-content: center;
+    align-items: flex-start;
+    flex-direction: column;
+    margin-left: 2rem;
+}
+
+header h1,h3 
+{
+    word-wrap: break-word;
+    color: white;
+    font-weight: bold;
+    text-shadow: 4px 4px black;
+    font-style: italic;
+}
+
+.word_accent
+{
+    color: #b59668;
+    font-size: 3.5rem;
+}
+
+.opening_hours_info
+{
+    background-color: white;
+    padding: 1.5rem;
+    border-radius: 25px;
+    box-shadow: 10px 5px 5px rgba(0,0,0,0.6);
+}
+
+.inverted_color
+{
+    filter: invert(100%);
+}
+
+a 
+{
+    color: #b59668;
+}
