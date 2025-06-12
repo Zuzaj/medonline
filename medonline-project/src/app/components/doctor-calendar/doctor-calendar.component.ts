@@ -279,9 +279,12 @@ getDayOfWeek(date: Date): string {
   return daysOfWeek[date.getDay()];
 }
 isTimeBetween(time: string, startTime: string, endTime: string): boolean {
-  return time >= startTime && time <= endTime;
+  const toMinutes = (t: string) => {
+    const [h, m] = t.split(':').map(Number);
+    return h * 60 + m;
+  };
+
+  const timeMinutes = toMinutes(time);
+  return timeMinutes >= toMinutes(startTime) && timeMinutes < toMinutes(endTime);
 }
-
-
-
 }

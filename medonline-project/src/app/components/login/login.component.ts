@@ -47,12 +47,13 @@ export class LoginComponent {
         if (this.emailError || this.passwordError) return;
     
         try {
-            console.log("success?");
-            await this.auth.login(this.email, this.password);
+            console.log("Attempting login...");
+            await this.auth.login(this.email, this.password).toPromise(); 
             this.router.navigate(['/home']);
-            console.log("success");
+            console.log("Login successful!");
         } catch (error: any) {
             this.passwordError = "Invalid credentials";
+            console.error("Login failed:", error);
         }
     }
     

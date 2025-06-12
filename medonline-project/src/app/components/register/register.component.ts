@@ -22,7 +22,7 @@ export class RegisterComponent implements OnInit {
     emailError: string
     password: string
     passwordError: string
-    type: string = "patient"; // Default to "patient"
+    type: string = ""; // Default to "patient"
     patientTypeError: string = "";
     specialization? : string
     specializationError: string = ""
@@ -38,7 +38,7 @@ export class RegisterComponent implements OnInit {
         this.emailError = ""
         this.password = ""
         this.passwordError = ""
-        this.type = "doctor"
+        this.type = ""
         this.patientTypeError= ""
         this.specialization = ""
         this.specializationError = ""

@@ -1,5 +1,5 @@
 <div class="historical-consultations">
-    <h2>Historyczne konsultacje</h2>
+    <h2>Historical consultations</h2>
   
     <!-- <div *ngIf="isLoading" class="loading">
       <p>Loading consultations...</p>
@@ -11,7 +11,7 @@
   
     <div class="card mt-4">
         <div class="card-body">
-          <h4>Historyczne konsultacje</h4>
+          <h4>Historical consultations</h4>
           <ul>
             <li *ngFor="let appointment of pastAppointments">
               {{ appointment.date }} - ( {{ appointment.description }} ) - {{ appointment.description }} zł
@@ -21,7 +21,7 @@
       </div>
   
     <div *ngIf="pastAppointments.length === 0" class="no-data">
-      <p>Brak historycznych wizyt.</p>
+      <p>No historical consultations</p>
     </div>
   </div>
   

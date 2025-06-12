@@ -1,13 +1,13 @@
 <div class="calendar-container">
   <div class="calendar-header">
-    <button (click)="showPreviousWeek()">Poprzedni tydzień</button>
-    <h2>Kalendarz ({{ currentWeek[0] | date: 'dd.MM' }} - {{ currentWeek[6] | date: 'dd.MM' }})</h2>
-    <button (click)="showNextWeek()">Następny tydzień</button>
+    <button (click)="showPreviousWeek()">Previous week</button>
+    <h2>Calendar ({{ currentWeek[0] | date: 'dd.MM' }} - {{ currentWeek[6] | date: 'dd.MM' }})</h2>
+    <button (click)="showNextWeek()">Next week</button>
   </div>
 
   <div class="calendar-time-navigation">
-    <button (click)="showPreviousHours()">Przewiń godziny wstecz</button>
-    <button (click)="showNextHours()">Przewiń godziny do przodu</button>
+    <button (click)="showPreviousHours()">See previous time slots</button>
+    <button (click)="showNextHours()">See later time slots</button>
   </div>
 
   <div class="calendar-grid">
@@ -15,7 +15,7 @@
       <div class="calendar-header-day" [class.today]="isToday(day)">
         <strong>{{ day | date: 'EEEE' }}</strong>
         <span>{{ day | date: 'dd.MM' }}</span>
-        <span class="appointments-count">Liczba konsultacji: {{ getAppointmentsCount(day) }}</span>
+        <span class="appointments-count">Consultations number: {{ getAppointmentsCount(day) }}</span>
       </div>
 
       <div class="calendar-time-slots">

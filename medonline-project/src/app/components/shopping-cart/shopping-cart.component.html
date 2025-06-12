@@ -4,21 +4,21 @@
       <div class="col-10">
   
         <div class="d-flex justify-content-between align-items-center mb-4">
-          <h3 class="fw-normal mb-0 text-black">Koszyk zakupowy</h3>
+          <h3 class="fw-normal mb-0 text-black">Your basket</h3>
           <img id="extend_cart_icon" src="../../../assets/bx-chevrons-down.svg" alt="extend icon"/>
         </div>
   
         <div class="card">
           <div class="card-body">
-            <h3 class="mb-3">Suma zamówienia: {{ totalUpcomingAppointmentsPrice }} zł </h3>
-            <button type="button" (click)="this.buy()" class="btn btn-warning btn-block btn-lg">Dokonaj zakupu</button>
+            <h3 class="mb-3">Total order cost: {{ totalUpcomingAppointmentsPrice }} zł </h3>
+            <button type="button" (click)="this.buy()" class="btn btn-warning btn-block btn-lg">Buy</button>
           </div>
         </div>
 
         <!-- Upcoming Appointments Section -->
         <div class="card mt-4">
           <div class="card-body">
-            <h4>Nadchodzące konsultacje</h4>
+            <h4>Upcomming appointments</h4>
             <ul>
               <li *ngFor="let appointment of upcomingAppointments">
                 {{ appointment.date }} - ( {{ appointment.description }} ) - {{ appointment.price }} zł

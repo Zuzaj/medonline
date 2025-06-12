@@ -1,5 +1,5 @@
 <div class="doctors-list-container">
-    <h2>Dostępni lekarze</h2>
+    <h2>Available doctors</h2>
   
     <div *ngIf="doctors$ | async as doctors; else loading">
       <ul *ngIf="doctors.length > 0; else noDoctors" class="doctor-list">

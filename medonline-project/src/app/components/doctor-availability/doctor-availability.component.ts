@@ -36,13 +36,13 @@ export class DoctorAvailabilityComponent implements OnInit {
   };
 
   daysOfWeekOptions = [
-    { label: 'Poniedziałek', value: 'Monday' },
-    { label: 'Wtorek', value: 'Tuesday' },
-    { label: 'Środa', value: 'Wednesday' },
-    { label: 'Czwartek', value: 'Thursday' },
-    { label: 'Piątek', value: 'Friday' },
-    { label: 'Sobota', value: 'Saturday' },
-    { label: 'Niedziela', value: 'Sunday' },
+    { label: 'Monday', value: 'Monday' },
+    { label: 'Tuesday', value: 'Tuesday' },
+    { label: 'Wednesday', value: 'Wednesday' },
+    { label: 'Thursday', value: 'Thursday' },
+    { label: 'Friday', value: 'Friday' },
+    { label: 'Saturday', value: 'Saturday' },
+    { label: 'Sunday', value: 'Sunday' },
   ];
 
   userId = ''; 

@@ -1,18 +1,18 @@
 <div class="calendar-container">
   <div class="calendar-header">
-    <button (click)="showPreviousWeek()">Poprzedni tydzień</button>
-    <h2>Kalendarz ({{ currentWeek[0] | date: 'dd.MM' }} - {{ currentWeek[6] | date: 'dd.MM' }})</h2>
+    <button (click)="showPreviousWeek()">Previous week</button>
+    <h2>Calendar ({{ currentWeek[0] | date: 'dd.MM' }} - {{ currentWeek[6] | date: 'dd.MM' }})</h2>
     <select [(ngModel)]="selectedDoctorId" (change)="onDoctorChange()">
       <option *ngFor="let doctor of doctors" [value]="doctor.user_id">
         {{ doctor.name }}
       </option>
     </select>
-    <button (click)="showNextWeek()">Następny tydzień</button>
+    <button (click)="showNextWeek()">Next week</button>
   </div>
 
   <div class="calendar-time-navigation">
-    <button (click)="showPreviousHours()">Przewiń godziny wstecz</button>
-    <button (click)="showNextHours()">Przewiń godziny do przodu</button>
+    <button (click)="showPreviousHours()">See previous time slots</button>
+    <button (click)="showNextHours()">See later time slots</button>
   </div>
 
   <div class="calendar-grid">
@@ -52,10 +52,10 @@
           <div class="modal" *ngIf="isBookingModalVisible">
             <div class="modal-content">
               <span class="close" (click)="closeBookingModal()">&times;</span>
-              <h2>Szczegóły rezerwacji</h2>
+              <h2>Appointment details</h2>
               <form (ngSubmit)="bookConsultation()">
                 <div class="form-group">
-                  <label for="type">Typ spotkania</label>
+                  <label for="type">Appointment type</label>
                   <select id="type" [(ngModel)]="bookingDetails.type" name="type" required>
                     <option value="regular">Regular</option>
                     <option value="emergency">Emergency</option>
@@ -64,35 +64,35 @@
                 </div>
             
                 <div class="form-group">
-                  <label for="patientName">Imię</label>
+                  <label for="patientName">Name</label>
                   <input id="patientName" [(ngModel)]="bookingDetails.patientName" name="patientName" type="text" required />
                 </div>
             
                 <div class="form-group">
-                  <label for="patientSurname">Nazwisko</label>
+                  <label for="patientSurname">Surname</label>
                   <input id="patientSurname" [(ngModel)]="bookingDetails.patientSurname" name="patientSurname" type="text" required />
                 </div>
             
                 <div class="form-group">
-                  <label for="gender">Płeć</label>
+                  <label for="gender">Gender</label>
                   <select id="gender" [(ngModel)]="bookingDetails.gender" name="gender" required >
-                  <option value="emergency">Kobieta</option>
-                    <option value="consultation">Męzczyzna</option>
+                  <option value="emergency">Female</option>
+                    <option value="consultation">Malea</option>
                     </select>
                 </div>
             
                 <div class="form-group">
-                  <label for="age">Wiek</label>
+                  <label for="age">Age</label>
                   <input id="age" [(ngModel)]="bookingDetails.age" name="age" type="number" required />
                 </div>
 
                 <div class="form-group">
-                  <label for="length">Długość wizyty</label>
+                  <label for="length">Appointment length</label>
                   <input id="length" [(ngModel)]="bookingDetails.length" name="length" type="number" required />
                 </div>
             
                 <div class="form-group">
-                  <label for="doctorNotes">Informacje dla lekarza</label>
+                  <label for="doctorNotes">Additional info for the doctor</label>
                   <textarea id="doctorNotes" [(ngModel)]="bookingDetails.doctorNotes" name="doctorNotes" required></textarea>
                 </div>
             
@@ -105,9 +105,9 @@
           <div class="modal" *ngIf="isConfirmationModalVisible">
             <div class="modal-content">
               <span class="close" (click)="closeConfirmationModal()">&times;</span>
-              <h2>Czy na pewno chcesz anulować tę wizytę?</h2>
-              <button (click)="confirmCancellation()">Tak, anuluj</button>
-              <button (click)="closeConfirmationModal()">Nie, anuluj</button>
+              <h2>Are your sure you want to cancel the appointment?</h2>
+              <button (click)="confirmCancellation()">Yes, confirm cancelation</button>
+              <button (click)="closeConfirmationModal()">No, don't cancel</button>
             </div>
           </div>
 
