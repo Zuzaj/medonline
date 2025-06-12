@@ -24,7 +24,7 @@
 
 3. Start the development server:
     ```bash
-    ng serve
+    npx ng serve
 
 4. Open the app in your browser:
     ```bash
